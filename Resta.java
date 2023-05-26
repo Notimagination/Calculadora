@@ -1,9 +1,11 @@
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Resta {
 
-    static ImageIcon img = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\substract.png");
+    static URL iconRest = Menu.class.getClassLoader().getResource("Recursos/substract.png");
+    static ImageIcon imgRest = new ImageIcon(iconRest);
     static String salir[] = {"Salir"};
 
     static int resultado;
@@ -16,7 +18,7 @@ public class Resta {
                 "Ingresá el primer número",
                 "Resta", 
                 JOptionPane.INFORMATION_MESSAGE,
-                img,
+                imgRest,
                  null,
                   ""));
 
@@ -26,7 +28,7 @@ public class Resta {
                   "Ingresá el segundo número",
                   "Resta", 
                   JOptionPane.INFORMATION_MESSAGE,
-                   img,
+                  imgRest,
                    null,
                     ""));
         
@@ -37,7 +39,7 @@ public class Resta {
                     "Resultado", 
                     JOptionPane.YES_NO_CANCEL_OPTION, 
                     JOptionPane.PLAIN_MESSAGE, 
-                    img, 
+                    imgRest, 
                     salir, 
                     0);
 
