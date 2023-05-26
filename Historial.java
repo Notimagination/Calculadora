@@ -1,3 +1,4 @@
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -7,7 +8,9 @@ public class Historial {
     static ArrayList<Integer> historial = new ArrayList<Integer>();
     static String guardar;
 
-    static ImageIcon img = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\record.png");
+    static URL iconRecord = Menu.class.getClassLoader().getResource("Recursos/record.png");
+
+    static ImageIcon imgRecord = new ImageIcon(iconRecord);
     static String salir[] = {"Salir"};
 
     public static void historial() {
@@ -21,7 +24,7 @@ public class Historial {
             "Historial", 
             JOptionPane.YES_NO_CANCEL_OPTION, 
             JOptionPane.PLAIN_MESSAGE, 
-            img, 
+            imgRecord, 
             salir, 
             0);
 
@@ -37,7 +40,7 @@ public class Historial {
             "Historial", 
             JOptionPane.YES_NO_CANCEL_OPTION, 
             JOptionPane.PLAIN_MESSAGE, 
-            img, 
+            imgRecord, 
             salir, 
             0);
 
