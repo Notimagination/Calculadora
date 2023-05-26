@@ -1,10 +1,14 @@
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Division {
 
-    static ImageIcon img = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\division.png");
-    static ImageIcon imgError = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\error.png");
+    static URL iconError = Menu.class.getClassLoader().getResource("Recursos/error.png");
+    static URL iconDiv = Menu.class.getClassLoader().getResource("Recursos/division.png");
+
+    static ImageIcon imgDiv = new ImageIcon(iconDiv);
+    static ImageIcon imgError = new ImageIcon(iconError);
     static String salir[] = {"Salir"};
 
     static int resultado;
@@ -17,7 +21,7 @@ public class Division {
         "Ingresá el primer número",
         "División", 
         JOptionPane.INFORMATION_MESSAGE,
-        img,
+        imgDiv,
          null,
           ""));
           
@@ -27,7 +31,7 @@ public class Division {
           "Ingresá el segundo número",
           "División", 
           JOptionPane.INFORMATION_MESSAGE,
-           img,
+          imgDiv,
            null,
             ""));
 
@@ -53,7 +57,7 @@ public class Division {
                 "Resultado", 
                 JOptionPane.YES_NO_CANCEL_OPTION, 
                 JOptionPane.PLAIN_MESSAGE, 
-                img, 
+                imgDiv, 
                 salir, 
                 0);
 
