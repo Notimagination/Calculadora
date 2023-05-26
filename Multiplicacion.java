@@ -1,9 +1,12 @@
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Multiplicacion {
 
-    static ImageIcon img = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\multiplication.png");
+    static URL iconMult = Menu.class.getClassLoader().getResource("Recursos/multiplication.png");
+    static ImageIcon imgMult = new ImageIcon(iconMult);
+
     static String salir[] = {"Salir"};
 
     static int resultado;
@@ -16,7 +19,7 @@ public class Multiplicacion {
         "Ingresá el primer número",
         "Multiplicación", 
         JOptionPane.INFORMATION_MESSAGE,
-        img,
+        imgMult,
          null,
           ""));
           
@@ -26,7 +29,7 @@ public class Multiplicacion {
           "Ingresá el segundo número",
           "Multiplicación", 
           JOptionPane.INFORMATION_MESSAGE,
-           img,
+          imgMult,
            null,
             ""));
             
@@ -37,7 +40,7 @@ public class Multiplicacion {
             "Resultado", 
             JOptionPane.YES_NO_CANCEL_OPTION, 
             JOptionPane.PLAIN_MESSAGE, 
-            img, 
+            imgMult, 
             salir, 
             0);
             
