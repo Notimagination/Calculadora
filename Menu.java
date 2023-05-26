@@ -3,7 +3,6 @@ import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -15,16 +14,17 @@ import javax.sound.sampled.AudioSystem;
 
 public class Menu {
 
-    public static void playSound(String soundName) {
+    public static void playSound(URL sonidos) {
         
         try 
         
         {
             
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile( ));
-            Clip clip = AudioSystem.getClip( );
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(sonidos);
+
+            Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
-            clip.start( );
+            clip.start();
         
         }
         
@@ -41,15 +41,31 @@ public class Menu {
     public static void menuPrincipal() {
 
         JFrame menuPrincipal = new JFrame("Calculadora");
-        ImageIcon img = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\main.png");
+
+        URL sonidoOperaciones = Menu.class.getClassLoader().getResource("Sonidos/clic_2.wav");
+        URL sonidoExtras = Menu.class.getClassLoader().getResource("Sonidos/clic.wav");
+        URL sonidoCerrar = Menu.class.getClassLoader().getResource("Sonidos/close.wav");
+
+        URL getIconSuma = Menu.class.getClassLoader().getResource("Recursos/plus.png");
+        URL getIconRes = Menu.class.getClassLoader().getResource("Recursos/substract.png");
+        URL getIconMult = Menu.class.getClassLoader().getResource("Recursos/multiplication.png");
+        URL getIconDiv = Menu.class.getClassLoader().getResource("Recursos/division.png");
+        URL getIconHist = Menu.class.getClassLoader().getResource("Recursos/record.png");
+        URL getIconCerrar = Menu.class.getClassLoader().getResource("Recursos/close.png");
+        URL getIconGit = Menu.class.getClassLoader().getResource("Recursos/github.png");
+
+        URL iconPrincipal = Menu.class.getClassLoader().getResource("Recursos/main.png");
+        URL background = Menu.class.getClassLoader().getResource("Recursos/background.jpg");
         
-        Icon iconSuma = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\plus.png");
-        Icon iconResta = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\substract.png");
-        Icon iconMultip = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\multiplication.png");
-        Icon iconDiv = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\division.png");
-        Icon iconHist = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\record.png");
-        Icon iconCerrar = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\close.png");
-        Icon iconGit = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\github.png");
+        Icon iconSuma = new ImageIcon(getIconSuma);
+        Icon iconResta = new ImageIcon(getIconRes);
+        Icon iconMultip = new ImageIcon(getIconMult);
+        Icon iconDiv = new ImageIcon(getIconDiv);
+        Icon iconHist = new ImageIcon(getIconHist);
+        Icon iconCerrar = new ImageIcon(getIconCerrar);
+        Icon iconGit = new ImageIcon(getIconGit);
+
+        ImageIcon img = new ImageIcon(iconPrincipal);
 
         JButton botonSuma = new JButton(iconSuma);
 
@@ -93,37 +109,34 @@ public class Menu {
         botonGit.setFocusPainted(false);
         botonGit.setContentAreaFilled(false);
 
-        JButton texto = new JButton("Versión 1.2");
+        JButton texto = new JButton("Versión 1.5");
 
         texto.setBorderPainted(false);
         texto.setFocusPainted(false);
         texto.setContentAreaFilled(false);
         texto.setFont(new Font("Texto", Font.ITALIC, 17));
-        texto.setForeground(Color.CYAN);
+        texto.setForeground(Color.MAGENTA);
 
-        botonSuma.setBounds(90,30,30,30);
-        botonResta.setBounds(165,30,30,30);
-        botonMultip.setBounds(90,90,30,30);
-        botonDiv.setBounds(165,90,30,30);
-        botonHist.setBounds(10,110,30,30);
-        botonCerrar.setBounds(10, 150,30,30);
-        botonGit.setBounds(240, 150,30,30);
-        texto.setBounds(80, 105,120,120);
-        
-        menuPrincipal.setResizable(false);
-        menuPrincipal.setIconImage(img.getImage());
+        botonSuma.setBounds(80,20,50,50);
+        botonResta.setBounds(155,20,50,50);
+        botonMultip.setBounds(80,90,50,50);
+        botonDiv.setBounds(155,90,50,50);
+        botonHist.setBounds(10,80,50,50);
+        botonCerrar.setBounds(10, 140,50,50);
+        botonGit.setBounds(230, 140,50,50);
+        texto.setBounds(80, 115,120,120);
 
         try {
 
-            menuPrincipal.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\background.jpg")))));
+            menuPrincipal.setContentPane(new JLabel(new ImageIcon(ImageIO.read(background))));
 
         } catch (IOException e) {
 
             e.printStackTrace();
         }
-
-        //menuPrincipal.getContentPane().setBackground(Color.CYAN);
         
+        menuPrincipal.setResizable(false);
+        menuPrincipal.setIconImage(img.getImage());
         menuPrincipal.add(botonSuma);
         menuPrincipal.add(botonResta);
         menuPrincipal.add(botonMultip);
@@ -137,13 +150,13 @@ public class Menu {
         menuPrincipal.setLayout(null);
         menuPrincipal.setVisible(true);
         menuPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\main.png"));
+        menuPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage(iconPrincipal));
 
         botonSuma.addActionListener(new ActionListener() {  
             
             public void actionPerformed(ActionEvent e){
 
-                playSound("C:\\Users\\User\\Desktop\\Calculadora\\sonidos\\clic_2.wav");
+                playSound(sonidoOperaciones);
 
                 Suma.suma();
 
@@ -155,7 +168,7 @@ public class Menu {
             
             public void actionPerformed(ActionEvent e){
 
-                playSound("C:\\Users\\User\\Desktop\\Calculadora\\sonidos\\clic_2.wav");
+                playSound(sonidoOperaciones);
                 
                 Resta.resta();
             
@@ -167,7 +180,7 @@ public class Menu {
             
             public void actionPerformed(ActionEvent e){
 
-                playSound("C:\\Users\\User\\Desktop\\Calculadora\\sonidos\\clic_2.wav");
+                playSound(sonidoOperaciones);
 
                 Multiplicacion.multiplicacion();
             
@@ -179,7 +192,7 @@ public class Menu {
             
             public void actionPerformed(ActionEvent e){
 
-                playSound("C:\\Users\\User\\Desktop\\Calculadora\\sonidos\\clic_2.wav");
+                playSound(sonidoOperaciones);
 
                 Division.divion();
 
@@ -191,7 +204,7 @@ public class Menu {
             
             public void actionPerformed(ActionEvent e){
 
-                playSound("C:\\Users\\User\\Desktop\\Calculadora\\sonidos\\clic.wav");
+                playSound(sonidoExtras);
 
                 Historial.historial();
 
@@ -203,7 +216,7 @@ public class Menu {
             
             public void actionPerformed(ActionEvent e){
 
-                playSound("C:\\Users\\User\\Desktop\\Calculadora\\sonidos\\close.wav");
+                playSound(sonidoCerrar);
 
                 try {
                     
@@ -225,7 +238,7 @@ public class Menu {
             
             public void actionPerformed(ActionEvent e){
 
-                playSound("C:\\Users\\User\\Desktop\\Calculadora\\sonidos\\clic.wav");
+                playSound(sonidoExtras);
 
                 try {
 
