@@ -1,9 +1,11 @@
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Suma {
     
-    static ImageIcon img = new ImageIcon("C:\\Users\\User\\Desktop\\Calculadora\\recursos\\plus.png");
+    static URL iconSuma = Menu.class.getClassLoader().getResource("Recursos/plus.png");
+    static ImageIcon imgSuma = new ImageIcon(iconSuma);
     static String salir[] = {"Salir"};
 
     static int resultado;
@@ -16,7 +18,7 @@ public class Suma {
                 "Ingresá el primer número",
                 "Suma", 
                 JOptionPane.INFORMATION_MESSAGE,
-                img,
+                imgSuma,
                  null,
                   ""));
 
@@ -26,7 +28,7 @@ public class Suma {
                   "Ingresá el segundo número",
                   "Suma", 
                   JOptionPane.INFORMATION_MESSAGE,
-                   img,
+                  imgSuma,
                    null,
                     ""));
 
@@ -37,7 +39,7 @@ public class Suma {
             "Resultado", 
             JOptionPane.YES_NO_CANCEL_OPTION, 
             JOptionPane.PLAIN_MESSAGE, 
-            img, 
+            imgSuma, 
             salir, 
             0);
             
